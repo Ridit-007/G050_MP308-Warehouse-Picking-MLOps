@@ -1,0 +1,12 @@
+.venv/
+.freebuff/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+mlruns/
+mlartifacts/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
