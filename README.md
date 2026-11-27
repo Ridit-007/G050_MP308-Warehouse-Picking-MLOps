@@ -1,0 +1,1 @@
+# G050_MP308-Warehouse-Picking-MLOps
