@@ -1,0 +1,62 @@
+# MP308 findings --- fill in every value, keep every key.
+# The marking tool reads this file. Write null only where the comment says so.
+# Use the exact column names and group values from your data files.
+
+group_id: "G050"          # your group id, e.g. "G042"
+problem_id: "MP308"
+
+data_issues:
+  # For each of the 7 kinds: present: true or false.
+  # If present is false, leave the other values as null.
+  leaking_column:
+    present: true
+    column: "pick_time_from_scanner"  # the column that must not be used as a feature
+  unit_mixup:
+    present: false
+    column: null           # the column recorded in a different unit
+    group_value: null      # the value of shift whose rows are affected
+    factor: null           # wrong value = right value x factor
+  sentinel_value:
+    present: true
+    column: "shift_hour"
+    value: -1              # the special number typed instead of a blank
+    count: 55              # how many rows have it
+  duplicate_rows:
+    present: true
+    count: 31              # number of EXTRA copies (rows you would delete)
+  stuck_sensor:
+    present: true
+    column: "shelf_height_m"
+    start_date: "2026-05-09"  # first date with the stuck value, YYYY-MM-DD
+    end_date: "2026-05-24"    # last date with the stuck value, YYYY-MM-DD
+  target_typos:
+    present: false
+    count: null            # rows whose target was typed 10 times too big
+  spelling_variants:
+    present: true
+    column: "zone_type"
+    true_levels: 3         # how many real categories there are after cleaning
+
+tracking:
+  experiment_name: null
+  best_run_id: null        # the MLflow run id of your v1 model
+  registered_model_name: null
+  champion_version: null
+
+monitoring:
+  psi:                     # cleaned train.csv vs later.csv, 10 bins
+    items_in_order: null
+    aisle_distance_m: null
+    picker_exp_months: null
+    shelf_height_m: null
+    shift_hour: null
+    order_weight_kg: null
+  most_drifted_feature: null
+  mae_by_group:            # v1 on later.csv, per value of shift
+    'Morning': null
+    'Evening': null
+    'Night': null
+  worst_served_group: null
+  mae_v1_on_check: null    # v1 on the last 30% of later.csv (by date)
+  mae_v2_on_check: null    # v2 on the same rows
+  decision: null           # promote or keep
